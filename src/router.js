@@ -6,7 +6,8 @@ import Contact from './views/Contact.vue'
 import Members from './views/Members.vue'
 import Login from './views/Login.vue'
 import Callback from './views/Callback.vue'
-import Secret from './views/Secret.vue'
+import Transact from './views/Transact.vue'
+import auth from './auth/authService.js'
 
 Vue.use(Router)
 
@@ -46,31 +47,27 @@ const router = new Router({
       component: Callback,
     },
     {
-      path: '/secret',
-      name: 'secret',
-      component: Secret,
+      path: '/transact',
+      name: 'transact',
+      component: Transact,
     },
   ]
 });
 
 router.beforeEach( (to,from,next) => {
 
-  let routerAuthCheck = false;  // TODO: finish later
+  let routerAuthCheck = auth.isAuthenticated();
 
   if( to.matched.some(record => record.meta.requiresAuth)){
-    // check for authorization
     if (routerAuthCheck){
       //store.commit('setuserIsAuthenticated', true);  //TOTO: finish later
       next();
     }
-    // not authorized
     else{
       router.replace('/login');
     }
   }
   else{
-    //  No Authorization Required
-    //  allow page loade
     next();
   }
 
