@@ -5,6 +5,8 @@ import About from './views/About.vue'
 import Contact from './views/Contact.vue'
 import Members from './views/Members.vue'
 import Login from './views/Login.vue'
+import Callback from './views/Callback.vue'
+import Secret from './views/Secret.vue'
 
 Vue.use(Router)
 
@@ -37,6 +39,16 @@ const router = new Router({
       name: 'members',
       component: Members,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/callback',
+      name: 'callback',
+      component: Callback,
+    },
+    {
+      path: '/secret',
+      name: 'secret',
+      component: Secret,
     },
   ]
 });

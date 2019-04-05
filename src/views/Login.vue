@@ -32,13 +32,18 @@
 
 </template>
 
+<script type="text/javascript" src="node_modules/auth0-js/build/auth0.js"></script>
+
 <script>
+import authService from "./../auth/authService.js"
+
 export default {
     name: 'Login',
     methods: {
         auth0Login(){
             //this.$store.dispatch('auth0Login');
             console.log('we are in auth0Login');
+            authService.login();
         },
     },
     }
