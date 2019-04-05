@@ -8,7 +8,7 @@ import Login from './views/Login.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -35,7 +35,33 @@ export default new Router({
     {
       path: '/members',
       name: 'members',
-      component: Members
-    }
+      component: Members,
+      meta: { requiresAuth: true }
+    },
   ]
-})
+});
+
+router.beforeEach( (to,from,next) => {
+
+  let routerAuthCheck = false;  // TODO: finish later
+
+  if( to.matched.some(record => record.meta.requiresAuth)){
+    // check for authorization
+    if (routerAuthCheck){
+      //store.commit('setuserIsAuthenticated', true);  //TOTO: finish later
+      next();
+    }
+    // not authorized
+    else{
+      router.replace('/login');
+    }
+  }
+  else{
+    //  No Authorization Required
+    //  allow page loade
+    next();
+  }
+
+});
+
+export default router;

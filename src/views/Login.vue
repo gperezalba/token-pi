@@ -31,3 +31,15 @@
       </v-container>
 
 </template>
+
+<script>
+export default {
+    name: 'Login',
+    methods: {
+        auth0Login(){
+            //this.$store.dispatch('auth0Login');
+            console.log('we are in auth0Login');
+        },
+    },
+    }
+</script>
