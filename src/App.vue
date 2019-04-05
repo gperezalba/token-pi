@@ -8,8 +8,8 @@
       <v-btn to="/" class="mr-2">Home</v-btn>
       <v-btn to="/contact" class="mr-2">Contact</v-btn>
       <v-btn to="/about" class="mr-2">About</v-btn>
-      <v-btn to="/callback" class="mr-2">Login</v-btn>
-      <v-btn @click="logout" v-if="this.$store.state.userIsAuthorized">Logout</v-btn>
+      <v-btn @click.prevent="login" class="mr-2" v-if="!isAuthenticated">Login</v-btn>
+      <v-btn @click.prevent="logout" class="mr-2" v-if="isAuthenticated">Logout</v-btn>
     </v-toolbar>
 
     <v-content>
@@ -28,12 +28,26 @@ export default {
   },
   data () {
     return {
-      clientId: process.env.VUE_APP_AUTH0_CONFIG_CLIENTID
+      isAuthenticated: false
+    };
+  },
+  async created() {
+    try {
+      await this.$auth.renewTokens();
+    } catch (e) {
+      console.log(e);
     }
   },
   methods: {
-    logout(){
-      console.log('logging out')
+    login() {
+      this.$auth.login();
+    },
+    logout() {
+      this.$auth.logOut();
+    },
+    handleLoginEvent(data) {
+      this.isAuthenticated = data.loggedIn;
+      this.profile = data.profile;
     }
   }
 }
