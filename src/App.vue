@@ -27,7 +27,7 @@ export default {
   },
   data () {
     return {
-      //
+      clientId: process.env.VUE_APP_AUTH0_CONFIG_CLIENTID
     }
   }
 }
