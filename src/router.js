@@ -6,7 +6,6 @@ import Contact from './views/Contact.vue'
 import Members from './views/Members.vue'
 import Login from './views/Login.vue'
 import Callback from './views/Callback.vue'
-import Transact from './views/Transact.vue'
 import auth from './auth/authService.js'
 
 Vue.use(Router)
@@ -45,11 +44,6 @@ const router = new Router({
       path: '/callback',
       name: 'callback',
       component: Callback,
-    },
-    {
-      path: '/transact',
-      name: 'transact',
-      component: Transact,
     },
   ]
 });
