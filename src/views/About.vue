@@ -1,3 +1,7 @@
 <template>
-    <h1>This is an about page</h1>
+  <div id="app">
+    <v-app id="inspire">
+      <v-parallax height="900" src="http://www.andanaquirologia.com/wp-content/uploads/2017/03/numerologia-en-pamplona-la-ciencia-de-los-numeros.jpg"></v-parallax>
+    </v-app>
+  </div>
 </template>

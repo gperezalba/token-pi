@@ -6,9 +6,12 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn to="/" class="mr-2">Home</v-btn>
-      <v-btn to="/contact" class="mr-2">Contact</v-btn>
       <v-btn to="/about" class="mr-2">About</v-btn>
       <v-btn @click.prevent="login" class="mr-2" v-if="!isAuthenticated">Login</v-btn>
+      <v-btn to="/callback" class="mr-2" v-if="isAuthenticated">Profile</v-btn>
+      <v-btn to="/buy" class="mr-2" v-if="isAuthenticated">Buy</v-btn>
+      <v-btn to="/transact" class="mr-2" v-if="isAuthenticated">Transact</v-btn>
+      <v-btn to="/sell" class="mr-2" v-if="isAuthenticated">Sell</v-btn>
       <v-btn @click.prevent="logout" class="mr-2" v-if="isAuthenticated">Logout</v-btn>
     </v-toolbar>
 
